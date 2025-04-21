@@ -40,3 +40,10 @@ class LoginPage:
         self.enter_username("standard_user")
         self.enter_password("secret_sauce")
         self.click_on_login_button()
+
+    def accept_alert(self):
+        try:
+            alert = self.driver.switch_to.alert
+            alert.accept()
+        except:
+            pass
