@@ -1,9 +1,10 @@
 from base_req import EmployeeApi
 
 base_url = "http://5.101.50.27:8000"
-api = EmployeeApi(base_url)
+
 
 def test_create_employee():
+    api = EmployeeApi(base_url)
     employee = api.create_employee(
         first_name="Alex",
         last_name="Grundstein",
@@ -25,6 +26,7 @@ def test_create_employee():
 
 
 def test_get_employee_info():
+    api = EmployeeApi(base_url)
     employee = api.create_employee(
         first_name="John",
         last_name="Smith",
@@ -41,6 +43,7 @@ def test_get_employee_info():
 
 
 def test_update_employee():
+    api = EmployeeApi(base_url)
     employee = api.create_employee(
         first_name="Fred",
         last_name="Cheep",

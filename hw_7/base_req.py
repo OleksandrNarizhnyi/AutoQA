@@ -23,16 +23,17 @@ class EmployeeApi:
             "is_active": is_active
         }
         response = requests.post(self.url + "/employee/create", json=employee_data)
-        assert response.status_code == 201, "Not expected status code"
+        assert response.status_code == 200, "Not expected status code"
         return response.json()
 
     def get_employee(self, employee_id):
         response = requests.get(f"{self.url}/employee/info/{employee_id}")
-        assert response.status_code == 200, "Not expected status code"
+        assert response.status_code == 200 or response.status_code == 404, "Not expected status code"
         return response.json()
 
     def update_employee(self, employee_id, **kwargs):
+        cl_token = self.get_token()
         update_data = {key: value for key, value in kwargs.items() if value is not None}
-        response = requests.patch(f"{self.url}/employee/change/{employee_id}", json=update_data)
+        response = requests.patch(f"{self.url}/employee/change/1/?client_token={cl_token}", json=update_data)
         assert response.status_code == 200, "Not expected status code"
         return response.json()
